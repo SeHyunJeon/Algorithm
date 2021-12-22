@@ -1,21 +1,16 @@
 #include <iostream>
+#include <climits>
 
+using namespace std;
 
-int main() {
-	int lucky_number = 3, user_input;
-	std::cout << "Search the my Lucky Number!" << std::endl;
+int main() { 
+	int n_int = INT_MAX; // 
+	unsigned int n_unsigned_int = 0;
+	
+	cout << "int는 " << sizeof n_int << "바이트를 사용하며, " << endl
+		<< "표한 가능한 범위는 최대 " << n_int << " 까지이다." << endl;
 
-	while (1) {
-		std::cout << "입력: ";
-		std::cin >> user_input;
-		if (user_input == lucky_number) {
-			std::cout << "정답입니다!" << std::endl;
-			return 0;
-		}
-		else {
-			std::cout << "오답입니다!" << std::endl;
-		}
-	}
-
+	cout << "unsigned int는 " << sizeof n_unsigned_int << "바이트를 사용하며, " << endl
+		<< "표한 가능한 범위는 최대 " << n_unsigned_int -1  << "+1 까지이다." << endl;
 }
 
