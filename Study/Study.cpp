@@ -1,16 +1,14 @@
 #include <iostream>
-#include <climits>
 
 using namespace std;
 
-int main() { 
-	int n_int = INT_MAX; // 
-	unsigned int n_unsigned_int = 0;
+int main() {
+	int a = 5;
+	int* p = &a;
+	cout << "(a)변수 a의 값: " << a << endl;
+	cout << "(&a)변수 a의 주소: " << &a << endl;
+	cout << "(*p)포인터 변수 p의 값: " << *p << endl;
+	cout << "(&p)포인터 변수 p의 주소: " << &p << endl;
+	cout << "(p)그냥 p를 찍었을 때: " << p << endl;
 	
-	cout << "int는 " << sizeof n_int << "바이트를 사용하며, " << endl
-		<< "표한 가능한 범위는 최대 " << n_int << " 까지이다." << endl;
-
-	cout << "unsigned int는 " << sizeof n_unsigned_int << "바이트를 사용하며, " << endl
-		<< "표한 가능한 범위는 최대 " << n_unsigned_int -1  << "+1 까지이다." << endl;
 }
-
