@@ -1,36 +1,35 @@
 #include <iostream>
-#include <cstdio>
 
 using namespace std;
 
+void selfNum(int number, bool* numbers);
+
 int main() {
-	int input_test_case = 0;
+	bool numbers[10000] = { false };
 
-	cin >> input_test_case;
+	for (int i = 1; i < 10000; i++) {
+		int number = i;
+		selfNum(number, numbers);
+	}
 
-	for (int i = 0; i < input_test_case; i++) {
-		int score[1000];
-		int input_student = 0;
-		int sum = 0;
-
-		cin >> input_student;
-
-		for (int j = 0; j < input_student; j++) {
-			cin >> score[j];
-			sum += score[j];
+	for (int i = 1; i < 10000; i++) {
+		if (numbers[i] == false) {
+			cout << i << endl;
 		}
+	}
+}
 
-		float avg = 0.0;
-		avg = sum / input_student;
+void selfNum(int number, bool* numbers) {
+	while (number < 10000) {
+		int num_of_1000 = number / 1000;
+		int num_of_100 = number / 100 % 10;
+		int num_of_10 = number / 10 % 10;
+		int num_of_1 = number % 10;
 
-		int result = 0;
-
-		for (int j = 0; j < input_student; j++) {
-			if (score[j] > avg) {
-				result++;
-			}
+		number = number + num_of_1000 + num_of_100 + num_of_10 + num_of_1;
+		if (number >= 10000) {
+			break;
 		}
-
-		printf("%.3f%%\n", (float)result / (float)input_student * 100);
+		numbers[number] = true;
 	}
 }
