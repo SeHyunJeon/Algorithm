@@ -3,28 +3,37 @@
 using namespace std;
 
 int main() {
-	int alphabet[26] = { 0 };
-	string input_word;
+	string input_data;
+	cin >> input_data;
 
-	cin >> input_word;
+	int alpha[26] = { 0 };
 
-	for (int i = 0; i < input_word.length(); i++) {
-		int index = input_word[i] - 97;
-
-		if (alphabet[index] == 0) {
-			alphabet[index] = i + 1;
+	for (int i = 0; i < input_data.length(); i++) {
+		if (input_data[i] >= 'a') {
+			alpha[input_data[i] - 'a'] ++;
 		}
-		else {
-			continue;
+		else if (input_data[i] < 'a') {
+			alpha[input_data[i] - 'A'] ++;
 		}
 	}
 
-	for (int i = 0; i < 26; i++) {
-		if (alphabet[i] == 0) {
-			cout << "-1 ";
+	int max = 0;
+	int temp = 0;
+
+	for (int j = 1; j < 26; j++) {
+		if (alpha[max] < alpha[j]) {
+			max = j;
+			temp = 0;
 		}
-		else {
-			cout << alphabet[i]-1 << " ";
+		else if (alpha[max] == alpha[j]) {
+			temp++;
 		}
+	}
+
+	if (temp != 0) {
+		cout << '?' << endl;
+	}
+	else if (temp == 0) {
+		cout << char(max + 'A') << endl;
 	}
 }
