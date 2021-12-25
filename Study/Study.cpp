@@ -2,34 +2,29 @@
 
 using namespace std;
 
-void selfNum(int number, bool* numbers);
-
 int main() {
-	bool numbers[10000] = { false };
+	int alphabet[26] = { 0 };
+	string input_word;
 
-	for (int i = 1; i < 10000; i++) {
-		int number = i;
-		selfNum(number, numbers);
-	}
+	cin >> input_word;
 
-	for (int i = 1; i < 10000; i++) {
-		if (numbers[i] == false) {
-			cout << i << endl;
+	for (int i = 0; i < input_word.length(); i++) {
+		int index = input_word[i] - 97;
+
+		if (alphabet[index] == 0) {
+			alphabet[index] = i + 1;
+		}
+		else {
+			continue;
 		}
 	}
-}
 
-void selfNum(int number, bool* numbers) {
-	while (number < 10000) {
-		int num_of_1000 = number / 1000;
-		int num_of_100 = number / 100 % 10;
-		int num_of_10 = number / 10 % 10;
-		int num_of_1 = number % 10;
-
-		number = number + num_of_1000 + num_of_100 + num_of_10 + num_of_1;
-		if (number >= 10000) {
-			break;
+	for (int i = 0; i < 26; i++) {
+		if (alphabet[i] == 0) {
+			cout << "-1 ";
 		}
-		numbers[number] = true;
+		else {
+			cout << alphabet[i]-1 << " ";
+		}
 	}
 }
