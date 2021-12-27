@@ -2,38 +2,41 @@
 
 using namespace std;
 
+int groupWord(string input_data);
+
 int main() {
-	string input_data;
-	cin >> input_data;
+	bool alphabet[26];
 
-	int alpha[26] = { 0 };
+	int test_case = 0;
+	cin >> test_case;
 
-	for (int i = 0; i < input_data.length(); i++) {
-		if (input_data[i] >= 'a') {
-			alpha[input_data[i] - 'a'] ++;
+	int sum = 0;
+
+	for (int i = 0; i < test_case; i++) {
+		string input_data;
+		cin >> input_data;
+
+		sum += groupWord(input_data);
+	}
+	
+	cout << sum;
+}
+
+int groupWord(string input_data) {
+	char temp = ' ';
+	bool alphabet[26];
+
+	for (int j = 0; j < input_data.length(); j++) {
+		if (alphabet[input_data[j] - 97] == false) {
+			return 0;
 		}
-		else if (input_data[i] < 'a') {
-			alpha[input_data[i] - 'A'] ++;
+		else {
+			alphabet[input_data[j] - 97] = false;
+			temp = input_data[j];
+			while (input_data[j+1] == temp) {
+				j++;
+			}
 		}
 	}
-
-	int max = 0;
-	int temp = 0;
-
-	for (int j = 1; j < 26; j++) {
-		if (alpha[max] < alpha[j]) {
-			max = j;
-			temp = 0;
-		}
-		else if (alpha[max] == alpha[j]) {
-			temp++;
-		}
-	}
-
-	if (temp != 0) {
-		cout << '?' << endl;
-	}
-	else if (temp == 0) {
-		cout << char(max + 'A') << endl;
-	}
+	return 1;
 }

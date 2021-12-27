@@ -1,3 +1,4 @@
 ﻿  Study.cpp
-C:\Users\uhs22\Desktop\개인_스터디\C++\Study\Study.cpp(11,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\uhs22\Desktop\개인_스터디\C++\Study\Study.cpp(8,7): warning C4101: 'alphabet' :참조되지 않은 지역 변수입니다.
+C:\Users\uhs22\Desktop\개인_스터디\C++\Study\Study.cpp(29,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   Study.vcxproj -> C:\Users\uhs22\Desktop\개인_스터디\C++\Study\Debug\Study.exe
