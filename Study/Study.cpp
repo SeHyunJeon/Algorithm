@@ -2,41 +2,29 @@
 
 using namespace std;
 
-int groupWord(string input_data);
-
 int main() {
-	bool alphabet[26];
+	int search_room_number = 0;
+	cin >> search_room_number;
 
-	int test_case = 0;
-	cin >> test_case;
-
-	int sum = 0;
-
-	for (int i = 0; i < test_case; i++) {
-		string input_data;
-		cin >> input_data;
-
-		sum += groupWord(input_data);
+	if (search_room_number == 1) {
+		cout << '1' << endl;
+		return 0;
 	}
-	
-	cout << sum;
-}
 
-int groupWord(string input_data) {
-	char temp = ' ';
-	bool alphabet[26];
+	int floor_max_room_number = 7;
+	int floor = 1;
 
-	for (int j = 0; j < input_data.length(); j++) {
-		if (alphabet[input_data[j] - 97] == false) {
-			return 0;
+
+	while (true) {
+		if (floor_max_room_number >= search_room_number) {
+			cout << floor + 1 << endl;
+			break;
 		}
 		else {
-			alphabet[input_data[j] - 97] = false;
-			temp = input_data[j];
-			while (input_data[j+1] == temp) {
-				j++;
-			}
+			floor++;
+			floor_max_room_number += 6 * floor;
 		}
 	}
-	return 1;
+
+	return 0;
 }
