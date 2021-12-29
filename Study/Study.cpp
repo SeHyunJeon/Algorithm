@@ -1,23 +1,40 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-int fact(int num);
+
 
 int main() {
-	int input_number = 0;
-	cin >> input_number;
+	int n = 0;
+	cin >> n;
 
-	int result = 0;
-	result = fact(input_number);
+	int weight[50] = { 0, };
+	int height[50] = { 0, };
+	int ranks[50] = { 0, };
 
-	cout << result << endl;
-}
 
-int fact(int num) {
-	if (num == 0) {
-		return 1;
+	for (int i = 0; i < n; i++) {
+		cin >> weight[i] >> height[i];
 	}
 
-	return num * fact(num - 1);
+	for (int i = 0; i < n; i++) {
+		int rank = 1;
+		for (int j = 0; j < n; j++) {
+			if (i == j) {
+				continue;
+			}
+			else {
+				if (weight[i] < weight[j] && height[i] < height[j]) {
+					rank++;
+				}
+			}
+		}
+		ranks[i] = rank;
+	}
+
+	for (int i = 0; i < n; i++) {
+		cout << ranks[i] << ' ';
+	}
+
 }
