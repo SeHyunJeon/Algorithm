@@ -1,40 +1,40 @@
 #include <iostream>
-#include <string>
 
 using namespace std;
 
 
 
 int main() {
-	int n = 0;
-	cin >> n;
+	int the_number_of_card = 0;
+	int max_value = 0;
 
-	int weight[50] = { 0, };
-	int height[50] = { 0, };
-	int ranks[50] = { 0, };
+	int card[101] = { 0, };
 
+	cin >> the_number_of_card >> max_value;
 
-	for (int i = 0; i < n; i++) {
-		cin >> weight[i] >> height[i];
+	for (int i = 0; i < the_number_of_card; i++) {
+		cin >> card[i];
 	}
 
-	for (int i = 0; i < n; i++) {
-		int rank = 1;
-		for (int j = 0; j < n; j++) {
-			if (i == j) {
+	int max_sum = 0;
+	int sum = 0;
+
+	for (int i1 = 0; i1 < the_number_of_card; i1++) {
+		for (int i2 = 0; i2 < the_number_of_card; i2++) {
+			if (i2 == i1) {
 				continue;
 			}
-			else {
-				if (weight[i] < weight[j] && height[i] < height[j]) {
-					rank++;
+			for (int i3 = 0; i3 < the_number_of_card; i3++) {
+				if (i3 == i2 || i3 == i1) {
+					continue;
+				}
+				sum = card[i1] + card[i2] + card[i3];
+				if (sum <= max_value && sum > max_sum) {
+					max_sum = sum;
 				}
 			}
 		}
-		ranks[i] = rank;
 	}
 
-	for (int i = 0; i < n; i++) {
-		cout << ranks[i] << ' ';
-	}
-
+	cout << max_sum << endl;
 }
