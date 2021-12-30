@@ -1,31 +1,83 @@
 #include <iostream>
-#include <string>
+#include <algorithm>
 
 using namespace std;
 
+string chess[50] = {" ",  };
 
+
+
+
+
+int BW_cnt(int y, int x, string* chess);
+int WB_cnt(int y, int x, string* chess);
 
 int main() {
-	int input_data = 0;
-	cin >> input_data;
+	int x = 0, y = 0;
+	cin >> y >> x;
 
-	int sum = 0;
-	int temp = 0;
 
-	for (int i = 1; i < input_data; i++) {
-		sum = i;
-		int j = i;
+	for (int i = 0; i < y; i++) {
+		cin >> chess[i];
+	}
 
-		while (j > 0) {
-			temp = j % 10;
-			sum += temp;
-			j /= 10;
-		}
-		if (sum == input_data) {
-			cout << i << endl;
-			return 0;
+	int min_value = 65; // 수정 가능한 최대치는 64개(8*8)이므로 최솟값을 찾기 위해 초기값은 65로 설정
+	int result_BW = 0;
+	int result_WB = 0;
+
+
+	for (int i = 0; i + 7 < y; i++) {
+		for (int j = 0; j + 7 < x; j++) {
+			result_BW = BW_cnt(i, j, chess);
+			result_WB = WB_cnt(i, j, chess);
+			min_value = min(result_BW, min(result_WB, min_value));
 		}
 	}
-	cout << '0' << endl;
+
+	cout << min_value << endl;
 	return 0;
+}
+
+int BW_cnt(int y, int x, string* chess) {
+	int cnt = 0;
+	string BW[8] = { "BWBWBWBW",
+					 "WBWBWBWB",
+					 "BWBWBWBW",
+					 "WBWBWBWB",
+					 "BWBWBWBW",
+					 "WBWBWBWB",
+					 "BWBWBWBW",
+					 "WBWBWBWB" };
+
+	for (int y1 = y; y1 < y + 8; y1++) {
+		for (int x1 = x; x1 < x + 8; x1++) {
+			if (chess[y1][x1] != BW[y1 - y][x1 - x]) {
+				cnt++;
+			}
+		}
+	}
+
+	return cnt;
+}
+
+int WB_cnt(int y, int x, string* chess) {
+	int cnt = 0;
+	string WB[8] = { "WBWBWBWB",
+					 "BWBWBWBW",
+					 "WBWBWBWB",
+					 "BWBWBWBW",
+					 "WBWBWBWB",
+					 "BWBWBWBW",
+					 "WBWBWBWB",
+					 "BWBWBWBW" };
+
+	for (int y1 = y; y1 < y + 8; y1++) {
+		for (int x1 = x; x1 < x + 8; x1++) {
+			if (chess[y1][x1] != WB[y1 - y][x1 - x]) {
+				cnt++;
+			}
+		}
+	}
+
+	return cnt;
 }
