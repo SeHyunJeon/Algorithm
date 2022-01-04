@@ -1,28 +1,30 @@
 #include <iostream>
-#include <string>
-
 
 using namespace std;
 
 int main() {
-	int input_number = 0;
-	cin >> input_number;
+	int input_case = 0;
+	cin >> input_case;
 
-	int i = 665;
-	int cnt = 0;
+	int number[1000] = { 0, };
 
-	string str_number = "";
+	for (int i = 0; i < input_case; i++) {
+		cin >> number[i];
+	}
 
-	while (++i) {
-		str_number = to_string(i);
-		if (str_number.find("666") != -1) {
-			cnt++;
-		}
-		if (cnt == input_number) {
-			cout << i << endl;
-			return 0;
+	int temp = 0;
+
+	for (int i = 0; i < input_case; i++) {
+		for (int j = 0; j < input_case - 1; j++) {
+			if (number[j] > number[j + 1]) {
+				temp = number[j+1];
+				number[j + 1] = number[j];
+				number[j] = temp;
+			}
 		}
 	}
 
-	return 0;
+	for (int i = 0; i < input_case; i++) {
+		cout << number[i] << endl;
+	}
 }
