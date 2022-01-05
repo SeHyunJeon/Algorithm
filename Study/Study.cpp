@@ -1,30 +1,25 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
 int main() {
-	int input_case = 0;
-	cin >> input_case;
+	int length = 0;
+	cin >> length;
 
-	int number[1000] = { 0, };
+	int* arr = new int[length];
 
-	for (int i = 0; i < input_case; i++) {
-		cin >> number[i];
+	for (int i = 0; i < length; i++) {
+		cin >> arr[i];
 	}
 
-	int temp = 0;
+	sort(arr, arr + length);
 
-	for (int i = 0; i < input_case; i++) {
-		for (int j = 0; j < input_case - 1; j++) {
-			if (number[j] > number[j + 1]) {
-				temp = number[j+1];
-				number[j + 1] = number[j];
-				number[j] = temp;
-			}
-		}
+	for (int i = 0; i < length; i++) {
+		cout << arr[i] << endl;
 	}
+	
+	delete[] arr;
 
-	for (int i = 0; i < input_case; i++) {
-		cout << number[i] << endl;
-	}
+	return 0;
 }
