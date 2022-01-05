@@ -1,25 +1,33 @@
 #include <iostream>
-#include <algorithm>
 
 using namespace std;
 
+
+
 int main() {
-	int length = 0;
-	cin >> length;
+	int input_case = 0, i = 0, j = 0, temp = 0;
 
-	int* arr = new int[length];
+	cin >> input_case;
 
-	for (int i = 0; i < length; i++) {
+	int* arr = new int[input_case] {0, };
+
+	for (i = 0; i < input_case; i++) {
 		cin >> arr[i];
 	}
 
-	sort(arr, arr + length);
+	for (i = 1; i < input_case; i++) {
+		for (j = i; j > 0; j--) {
+			if (arr[j] < arr[j - 1]) {
+				temp = arr[j];
+				arr[j] = arr[j - 1];
+				arr[j - 1] = temp;
+			}
+		}
+	}
 
-	for (int i = 0; i < length; i++) {
+	for (i = 0; i < input_case; i++) {
 		cout << arr[i] << endl;
 	}
-	
-	delete[] arr;
 
-	return 0;
+	delete[] arr;
 }
