@@ -1,23 +1,27 @@
 #include <iostream>
+#include <vector>
 #include <algorithm>
 
 using namespace std;
 
-int main()
-{
-    string input_number = "";
-    cin >> input_number;
-    int size = input_number.length();
+vector<pair<int, int>> v;
 
-    int* arr = new int[size];
+int main() {
+	int N;
+	cin >> N;
 
-    for (int i = 0; i < size; i++) {
-        arr[i] = input_number[i] - '0';
-    }
+	int x, y;
 
-    sort(arr, arr + size, greater<int>());
+	for (int i = 0; i < N; i++) {
+		cin >> x >> y;
+		v.push_back({ x, y });
+	}
 
-    for (int i = 0; i < size; i++) {
-        cout << arr[i];
-    }
+	sort(v.begin(), v.end());
+
+	for (int i = 0; i < N; i++) {
+		cout << v[i].first << ' ' << v[i].second << '\n';
+	}
+
+	return 0;
 }
