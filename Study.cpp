@@ -1,27 +1,26 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <string>
 
 using namespace std;
 
-vector<pair<int, int>> v;
+int main(){
+    int input_number = 0;
+    cin >> input_number;
 
-int main() {
-	int N;
-	cin >> N;
+    int i = 665;
+    int cnt = 0;
 
-	int x, y;
+    string str_number = "";;
 
-	for (int i = 0; i < N; i++) {
-		cin >> x >> y;
-		v.push_back({ y, x });
-	}
-
-	sort(v.begin(), v.end());
-
-	for (int i = 0; i < N; i++) {
-		cout << v[i].second << ' ' << v[i].first << '\n';
-	}
-
-	return 0;
+    while(++i){
+        str_number = to_string(i);
+        if(str_number.find("666") != -1){
+            cnt++;
+        }
+        if (cnt == input_number){
+            cout << i << endl;
+            return 0;
+        }
+    }
+    return 0;
 }
