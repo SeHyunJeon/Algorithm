@@ -4,16 +4,21 @@ using namespace std;
 
 int main()
 {
-    int a, b, c, d, e, f; 
+    int h, m;
+    int gap;
 
-    cin >> a >> b >> c >> d >> e >> f;
+    cin >> h >> m;
+    cin >> gap;
 
-    for(int i = -999; i <= 999; i++){
-        for(int j = -999; j <= 999; j++){
-            if(a*i + b*j == c && d*i + e*j == f){
-                cout << i << " " << j << endl;
-                return 0;
-            }
-        }
+    if(m + gap >= 60){
+        h += (m + gap) / 60;
+        m = (m + gap) % 60;
     }
+    else{
+        m += gap;
+    }
+
+    cout << h % 24 << " " << m << endl;
+
+    return 0;
 }
