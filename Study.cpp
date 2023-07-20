@@ -1,36 +1,49 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-int main()
-{
-    int dice1, dice2, dice3;
+int a[5000001];
+int b[5000001];
+int c[5000001] = {0,};
 
-    cin >> dice1 >> dice2 >> dice3;
+int main(){
+    int n;
+    cin  >> n;
+    for(int i=0; i < n; i++){
+        cin >> a[i];
+    }
 
-    if (dice1 == dice2 && dice2 == dice3)
-    {
-        cout << 10000 + dice1 * 1000 << endl;
+    int m;
+    cin >> m;
+    for(int i=0; i < m; i++){
+        cin >> b[i];
     }
-    else if (dice1 == dice2 || dice1 == dice3)
-    {
-        cout << 1000 + dice1 * 100 << endl;
-    }
-    else if (dice2 == dice3)
-    {
-        cout << 1000 + dice2 * 100 << endl;
-    }
-    else
-    {
-        int max = dice1;
-        if (max < dice2)
+
+    sort(a,a+n);
+    for(int i=0; i < m; i++){
+        int right = n-1;
+        int left = 0;
+        while (left<=right)
         {
-            max = dice2;
+            int mid = (left+right)/2;
+            if(a[mid] == b[i]){
+                c[i] = 1;
+                break;
+            }
+            else if(a[mid] > b[i]){
+                right = mid-1;
+            }
+            else{
+                left = mid+1;
+            }
         }
-        if (max < dice3)
-        {
-            max = dice3;
-        }
-        cout << max * 100 << endl;
+        
     }
+
+    for(int i=0; i < m; i++){
+        cout << c[i] << " ";
+    }
+
+
 }
